@@ -16,7 +16,6 @@ export default async function Header() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            {/* <Link href="/notes">Notes</Link> */}
             <TagsMenu tags={tags} />
           </li>
         </ul>
