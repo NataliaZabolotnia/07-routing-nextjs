@@ -4,7 +4,7 @@ export interface Note {
   id: string;
   title: string;
   content: string;
-  tag: NoteTag;
+  tag?: NoteTag;
   createdAt: string;
   updatedAt: string;
 }
@@ -12,5 +12,11 @@ export interface Note {
 export interface NewNote {
   title: string;
   content: string;
-  tag: NoteTag;
+  tag?: NoteTag;
 }
+
+export type Category = {
+  id: string;
+  description: string;
+  name: string;
+};

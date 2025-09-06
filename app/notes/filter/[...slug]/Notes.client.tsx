@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import css from "@/app/notes/NotesPage.module.css";
+import css from "@/app/notes/filter/[...slug]/NotesPage.module.css";
 import "modern-normalize/modern-normalize.css";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import { fetchNotes } from "@/lib/api";
@@ -15,9 +15,10 @@ import StatusWrapper from "@/components/StatusWrapper/StatusWrapper";
 interface NotesProps {
   initialPage: number;
   initialQuery: string;
+  tag?: string;
 }
 
-export default function Notes({ initialPage, initialQuery }: NotesProps) {
+export default function Notes({ initialPage, initialQuery, tag }: NotesProps) {
   const [searchText, setSearchText] = useState(initialQuery);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,8 +27,8 @@ export default function Notes({ initialPage, initialQuery }: NotesProps) {
   const closeModal = () => setIsModalOpen(false);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["notes", currentPage, searchText],
-    queryFn: () => fetchNotes(currentPage, searchText),
+    queryKey: ["notes", currentPage, searchText, tag],
+    queryFn: () => fetchNotes(currentPage, searchText, tag),
     placeholderData: keepPreviousData,
   });
 
@@ -61,6 +62,9 @@ export default function Notes({ initialPage, initialQuery }: NotesProps) {
           Create note +
         </button>
       </header>
+      <h2 className={css.title}>
+        {tag ? `Notes tagged: ${tag}` : "All notes"}
+      </h2>
 
       <StatusWrapper
         isLoading={isLoading}
