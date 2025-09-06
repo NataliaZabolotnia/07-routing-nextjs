@@ -1,4 +1,4 @@
-import css from "@/app/notes/filter/@sidebar/page.module.css";
+import css from "@/app/notes/filter/@sidebar/SidebarNotes.module.css";
 import { getTags } from "@/lib/api";
 import Link from "next/link";
 
