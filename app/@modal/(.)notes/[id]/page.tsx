@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-query";
 
 type Props = {
-  params: { id: string }; // без Promise!
+  params: Promise<{ id: string }>;
 };
 
 const Page = async ({ params }: Props) => {
